@@ -1,5 +1,6 @@
 package view;
 
+import Controllers.AccountController;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -53,22 +54,23 @@ public class Menu {
                 System.out.println("Password?");
                 String password = input.nextLine();
 
-                String dbUser = "User";
-                String dbPassword = "Password"; // credentials from the data source 	
-                if (dbUser.equals(user) && dbPassword.equals(password)) {
-//                    AccountController accountController = new AccountController();
-//                if (accountController.checkcredentials(user, password)) {
+//                String dbUser = "User";
+//                String dbPassword = "Password"; // credentials from the data source 	
+//                if (dbUser.equals(user) && dbPassword.equals(password)) {
+                    AccountController accountController = new AccountController();
+                    if (accountController.checkcredentials(user, password)) {
 
-                    System.out.println("U bent succesvol ingelogd ");
+                        System.out.println("U bent succesvol ingelogd ");
 
-                    actie();
+                        actie();
 
-//                } else {
-//
-//                    System.out.println("Onjuiste credentials! Probeer het opnieuw");
-//                    input.nextLine();
-                }
+                    } else {
 
+                        System.out.println("Onjuiste credentials! Probeer het opnieuw");
+                        input.nextLine();
+                    }
+
+//                }
             }
         }
     }

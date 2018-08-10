@@ -29,7 +29,7 @@ private ArrayList<Artikel>artikelen;
 		Artikel artikel =artikelen.get(artikelIndex);
 		BestelRegel bestelregel = new BestelRegel(aantal, bestellingId, artikel);
 		bestelregel.setPrijs(artikel.getPrijs().multiply(new BigDecimal(aantal)));
-		if(artikel.verlaagVoorraad(aantal)) {
+		if (verlaagVoorraad(artikel, aantal)) {
 			if (voorraadVerlagen(artikel,aantal)) {
 					
 				Integer id = bestelregelDao.createBestelregel(bestelregel);
@@ -48,6 +48,28 @@ private ArrayList<Artikel>artikelen;
 		return "voorraad te klein";
 	}
 	
+        /**
+	 * Verlaagt de voorraad mits de gewenste verlaging een positief aantal is en de verlaging niet groter is dan de huidige voorraad
+	 * @param aantal de hoeveelheid waarmee de voorraad verlaagt moet worden
+	 */
+	protected boolean verlaagVoorraad(Artikel artikel , int aantal)  {
+		if (aantal>0) {
+			if ((artikel.getVoorraad()-aantal)<0) {
+				return false;
+			}
+			
+			artikel.setVoorraad(artikel.getVoorraad()-aantal);
+			return true;
+		}
+		return false;
+	}
+        
+        protected void verhoogVoorraad(Artikel artikel, int aantal)  {
+		if (aantal>0) {
+			artikel.setVoorraad(artikel.getVoorraad()+aantal);
+		}
+	}
+        
 	public boolean bestellingTotaalPrijsUpdate(int bestellingId){
 		BigDecimal totaalPrijs = bepaalBestelregelsTotaalprijs(bestellingId);
 		if (bestellingdao.updateBestellingen(totaalPrijs, bestellingId)) {
@@ -64,7 +86,7 @@ private ArrayList<Artikel>artikelen;
 		}
 		
 		Artikel artikeloud = artikelDao.getArtikel(bestelregel.getArtikel().getId());
-		artikeloud.verhoogVoorraad(bestelregel.getAantal());
+		verhoogVoorraad(artikeloud, bestelregel.getAantal());
 		artikelDao.updateArtikel(artikeloud);
 		
 		
@@ -72,7 +94,7 @@ private ArrayList<Artikel>artikelen;
 		bestelregel.setAantal(aantal);
 		bestelregel.setArtikel(artikelnieuw);
 		bestelregel.setPrijs(artikelnieuw.getPrijs().multiply(new BigDecimal(aantal)));
-		if(artikelnieuw.verlaagVoorraad(aantal)) {
+		if(verlaagVoorraad(artikelnieuw, aantal)) {
 			if (voorraadVerlagen(artikelnieuw,aantal)) {
 				if(bestelregelDao.updateBestelRegel(bestelregel)) {      
 					 if (bestellingTotaalPrijsUpdate(bestelregel.getBestellingId())) {;
@@ -97,7 +119,7 @@ private ArrayList<Artikel>artikelen;
 		}
 		
 		Artikel artikel = artikelDao.getArtikel(bestelregel.getArtikel().getId());
-		artikel.verhoogVoorraad(bestelregel.getAantal());
+		verhoogVoorraad(artikel, bestelregel.getAantal());
 		artikelDao.updateArtikel(artikel);
 		
 		int bestellingId=bestelregel.getBestellingId();
@@ -161,7 +183,7 @@ private ArrayList<Artikel>artikelen;
 	}
 	
 	public boolean voorraadVerhogen(Artikel artikel, int aantal) {
-		artikel.verhoogVoorraad(aantal);
+		verhoogVoorraad(artikel, aantal);
 		return(artikelDao.updateArtikel(artikel));
 		
 	}

@@ -26,6 +26,7 @@ public class DOM {
 		}
 		try {
 		    document = builder.parse(new FileInputStream("resources/connectie.xml"));
+//                    document = builder.parse(new FileInputStream("src/main/resources/connectie.xml"));
 		} catch (SAXException e) {
 		    e.printStackTrace();
 		} catch (IOException e) {

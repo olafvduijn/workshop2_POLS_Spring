@@ -1,8 +1,9 @@
 // TO DO: BigDecimal
 // TO DO: type verwijderen???
 // TO DO: exception voor negatieve prijs
-package domein;
+package POJO;
 
+import domein.*;
 import java.math.BigDecimal;
 
 public class Artikel {
