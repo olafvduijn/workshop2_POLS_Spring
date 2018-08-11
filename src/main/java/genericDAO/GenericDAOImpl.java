@@ -25,6 +25,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
         return entity;
     }
 
+       
     @Override
     public ArrayList<T> findAll() {
         CriteriaQuery<T> criteriaQuery = em.getCriteriaBuilder().createQuery(entityClass);

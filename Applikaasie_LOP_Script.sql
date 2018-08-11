@@ -24,7 +24,7 @@ USE `applikaasie_lop` ;
 CREATE TABLE IF NOT EXISTS `applikaasie_lop`.`account` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL DEFAULT NULL,
-  `password` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(60) NULL DEFAULT NULL,
   `rol` ENUM('klant', 'medewerker', 'beheerder') NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idAccount_UNIQUE` (`id` ASC),

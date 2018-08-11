@@ -11,6 +11,8 @@ public interface GenericDAO<T> {
 
     public T findById(Class<T> type, Long id);
 
+    public T findByName(Class<T> type, String name);
+    
     public ArrayList<T> findAll();
 
     public T create(T entity);

@@ -3,6 +3,7 @@ package genericDAO;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
+import org.mindrot.jbcrypt.BCrypt;
 import utility.HibernateEntityManagerFactory;
 import utility.Slf4j;
 
@@ -20,15 +21,33 @@ public class testGenericDAO {
         EntityManager em = HibernateEntityManagerFactory.getEntityManager();
         // Verkrijg de DAO
         ArtikelDAOImpl artikelDAO = new ArtikelDAOImpl(em, Artikel.class);
+        AccountDAOImpl accountDAO = new AccountDAOImpl(em, Account.class);
 
-        // Eerst maar eens alle records uit de gehele tabel verwijderen
+        //
+        //  Eerst iets met accounts
+        //
+        Account acc1 = accountDAO.findByName(Account.class, "steff");
+        if (acc1 != null) {
+            System.out.println( "Ja, gevonden, dus nu eerst delete!");
+            accountDAO.delete(acc1);
+        }
+        
+        em.clear();
+        String pwd = BCrypt.hashpw("steff", BCrypt.gensalt(12)); 
+        Account account = new Account("steff", pwd, Account.Rol.beheerder);
+        account = accountDAO.create(account);
+        
+        
+        //
+        // Artikelen: Eerst maar eens alle records uit de gehele tabel verwijderen
+        //
         final ArrayList<Artikel> artikelList = artikelDAO.findAll();
         artikelList.forEach(instance -> {
             System.out.println("Deleting: " + instance.getNaam());
             artikelDAO.delete(instance);
         });
         em.clear();
-
+        
         // Een artikel toevoegen
         Artikel artikel1 = new Artikel();
         artikel1.setNaam("Eerste test");
