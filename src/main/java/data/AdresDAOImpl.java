@@ -30,6 +30,18 @@ public class AdresDAOImpl extends GenericDAOImpl<Adres> {
 
 	}
 	
+	public Adres getAdres(int klantid, AdresType adresType) {
+		 CriteriaBuilder cb = em.getCriteriaBuilder();
+	        CriteriaQuery<Adres> query = cb.createQuery(Adres.class);
+	        Root<Adres> root = query.from(Adres.class);
+	        query = query.select(root).where(cb.and((cb.equal(root.get("klant"), klantid)),cb.equal(root.get("adresType"),adresType)));
+			
+	        try {
+				return em.createQuery(query).getSingleResult();
+			} catch (NoResultException nre) {
+				return null;
+			}
+	}
 	
 	// "select * from adres where klant_idKlant= "+klantId+" && Adrestype=\"postadres\""
 	public boolean factuurAdresAanwezig(int klantid) {

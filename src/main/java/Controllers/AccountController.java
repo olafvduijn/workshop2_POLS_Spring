@@ -1,6 +1,8 @@
 package Controllers;
 
 import data.AccountDAOImpl;
+import data.KlantDAOImpl;
+
 import java.util.ArrayList;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -17,12 +19,12 @@ import view.Menu;
 public class AccountController {
 
     private AccountDAOImpl accountDao;
-    private KlantDao klantDao;
+    private KlantDAOImpl klantDao;
     private Account account;
 
     public AccountController() {
         accountDao = new AccountDAOImpl(Menu.em, Account.class);
-        klantDao = DaoFactory.getKlantDao();
+        klantDao = new KlantDAOImpl(Menu.em, Klant.class);
     }
 
     public AccountController(AccountDaoMongoImplement accountDao) {

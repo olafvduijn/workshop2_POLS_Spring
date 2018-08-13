@@ -1,25 +1,29 @@
 package Controllers;
 
+import data.AdresDAOImpl;
+import data.KlantDAOImpl;
 import dataOld.AdresDao;
 import dataOld.DaoFactory;
 import dataOld.KlantDao;
 import domein.Adres;
 import domein.Adres.AdresType;
+import view.Menu;
 import domein.Klant;
 
 public class AdresController {
 	
-	AdresDao adresDao;
+	AdresDAOImpl adresDao;
+	private KlantDAOImpl klantDao;
 	Klant klant;
 	Adres adres;
 	
 	public AdresController() {
-		adresDao=DaoFactory.getAdresDao();
+		adresDao = new AdresDAOImpl(Menu.em, Adres.class);
+		klantDao = new KlantDAOImpl(Menu.em, Klant.class);
 	}
 	
 	public void setKlant(int klantId) {
-		KlantDao klantDao=DaoFactory.getKlantDao();
-		klant=klantDao.getKlant(klantId);
+		klant=klantDao.findById(klantId);
 	}
 
 	public boolean factuurAdresAanwezig()  {
@@ -57,12 +61,12 @@ public class AdresController {
 	public void wijzigStraat(String nieuweStraat)  {
 		adres.setStraatnaam(nieuweStraat);
 		System.out.println("huisnummer: "+adres.getHuisnummer());
-		adresDao.updateAdres(adres, adres.getId());
+		adresDao.update(adres);
 	}
 
 	public void wijzigHuisnummer(int nieuwHuisnummer)  {
 		adres.sethuisnummer(nieuwHuisnummer);
-		adresDao.updateAdres(adres, adres.getId());
+		adresDao.update(adres);
 	}
 
 	public void wijzigToevoeging(Object nieuweToevoeging)  {
@@ -72,36 +76,36 @@ public class AdresController {
 		else {
 			adres.setToevoeging(nieuweToevoeging.toString());
 		}
-		adresDao.updateAdres(adres, adres.getId());
+		adresDao.update(adres);
 		
 	}
 
 	public void wijzigPostcode(String nieuwePostcode)  {
 		adres.setPostcode(nieuwePostcode);
-		adresDao.updateAdres(adres, adres.getId());
+		adresDao.update(adres);
 		
 	}
 
 	public void wijzigPlaats(String nieuwePlaats)  {
 		adres.setWoonplaats(nieuwePlaats);
-		adresDao.updateAdres(adres, adres.getId());
+		adresDao.update(adres);
 	}
 
 	public void verwijderAdres()  {
-		adresDao.deleteAdres(adres);
+		adresDao.delete(adres);
 		
 	}
 
 	public void maakFactuurAdres(String straatnaam, int huisnummer, String toevoeging, String postcode, String plaats) {
-		adres=new Adres (AdresType.FACTUURADRES, straatnaam, huisnummer,toevoeging, postcode, plaats, klant.getId());
-		adresDao.createAdres(adres, klant.getId());
+		adres=new Adres (AdresType.FACTUURADRES, straatnaam, huisnummer,toevoeging, postcode, plaats, klant);
+		adresDao.create(adres);
 		
 		
 	}
 
 	public void maakBezorgAdres(String straatnaam, int huisnummer, String toevoeging, String postcode, String plaats) {
-		adres=new Adres (AdresType.BEZORGADRES, straatnaam, huisnummer,toevoeging, postcode, plaats, klant.getId());
-		adresDao.createAdres(adres, klant.getId());
+		adres=new Adres (AdresType.BEZORGADRES, straatnaam, huisnummer,toevoeging, postcode, plaats, klant);
+		adresDao.create(adres);
 	}
 
 	
