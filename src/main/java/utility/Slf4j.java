@@ -16,7 +16,7 @@ public class Slf4j {
         // Verwijder een eventueel bestaand log-bestand
         
         
-        File logFile = new File("workshop1_slf4j.log");
+        File logFile = new File("workshop2_slf4j.log");
         logFile.delete();
         return LoggerFactory.getLogger(Slf4j.class.getName());
     }

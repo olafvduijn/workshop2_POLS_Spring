@@ -1,8 +1,8 @@
 package Controllers;
 
-import data.AdresDao;
-import data.DaoFactory;
-import data.KlantDao;
+import dataOld.AdresDao;
+import dataOld.DaoFactory;
+import dataOld.KlantDao;
 import domein.Adres;
 import domein.Adres.AdresType;
 import domein.Klant;

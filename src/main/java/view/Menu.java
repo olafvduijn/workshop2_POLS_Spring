@@ -5,10 +5,14 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import Controllers.MenuController;
+import javax.persistence.EntityManager;
+import utility.HibernateEntityManagerFactory;
 import utility.Slf4j;
 
 public class Menu {
 
+    // Verkrijg een entityManager
+    public static EntityManager em = HibernateEntityManagerFactory.getEntityManager();
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -32,6 +36,10 @@ public class Menu {
             input.nextLine();
             if (keus == 2) {
                 Slf4j.getLogger().info("Workshop2 (POLS) ended");
+                
+                // Close entityManager
+                HibernateEntityManagerFactory.closeEntityManagerFactory();
+                
                 System.out.println("Bedankt tot ziens");
                 System.exit(0);
 
@@ -39,14 +47,16 @@ public class Menu {
                 System.out.println("Kies database.");
                 System.out.println("Kies en type in wat u wilt doen:  1 :MySQL Database");
                 System.out.println("Kies en type in wat u wilt doen:  2 :Mongo Database");
-                int database = input.nextInt();
+                int database = 1; //input.nextInt();
                 MenuController.setDatabase(database);
-                input.nextLine();
+//                input.nextLine();
                 if (database == 1) {
                     System.out.println("Kies en type in wat u wilt doen:  1 :Wel een connectiepool gebruiken ");
                     System.out.println("Kies en type in wat u wilt doen:  2 :Niet een connectiepool gebruiken ");
-                    MenuController.setConnectionPool(input.nextInt());
-                    input.nextLine();
+
+                    int pool = 1; // input.nextInt();
+                    MenuController.setConnectionPool(pool);
+//                    input.nextLine();
                 }
                 System.out.println("Log in om verder te gaan");
                 System.out.println("Usernaam?");
@@ -57,18 +67,18 @@ public class Menu {
 //                String dbUser = "User";
 //                String dbPassword = "Password"; // credentials from the data source 	
 //                if (dbUser.equals(user) && dbPassword.equals(password)) {
-                    AccountController accountController = new AccountController();
-                    if (accountController.checkcredentials(user, password)) {
+                AccountController accountController = new AccountController();
+                if (accountController.checkcredentials(user, password)) {
 
-                        System.out.println("U bent succesvol ingelogd ");
+                    System.out.println("U bent succesvol ingelogd ");
 
-                        actie();
+                    actie();
 
-                    } else {
+                } else {
 
-                        System.out.println("Onjuiste credentials! Probeer het opnieuw");
-                        input.nextLine();
-                    }
+                    System.out.println("Onjuiste credentials! Probeer het opnieuw");
+                    input.nextLine();
+                }
 
 //                }
             }

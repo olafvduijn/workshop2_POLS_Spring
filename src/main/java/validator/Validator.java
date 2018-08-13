@@ -3,7 +3,7 @@ package validator;
 import java.math.BigDecimal;
 import org.apache.commons.validator.GenericValidator;
 
-import data.DaoFactory;
+import dataOld.DaoFactory;
 
 public class Validator {
 

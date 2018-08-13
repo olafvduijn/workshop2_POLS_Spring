@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import data.AdresDao;
-import data.ConnectieFactory;
+import dataOld.AdresDao;
+import dataOld.ConnectieFactory;
 import domein.Adres;
 import domein.Adres.AdresType;
 

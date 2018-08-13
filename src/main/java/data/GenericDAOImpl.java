@@ -1,4 +1,4 @@
-package genericDAO;
+package data;
 
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -20,12 +20,11 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T findById(Class<T> classType, Long id) {
-        T entity = em.find(classType, id);
+    public T findById(int id) {
+        T entity = em.find(entityClass, id);
         return entity;
     }
 
-       
     @Override
     public ArrayList<T> findAll() {
         CriteriaQuery<T> criteriaQuery = em.getCriteriaBuilder().createQuery(entityClass);
@@ -49,9 +48,10 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void delete(T entity) {
+    public boolean delete(T entity) {
         em.getTransaction().begin();
         em.remove(entity);
         em.getTransaction().commit();
+        return true;
     }
 }

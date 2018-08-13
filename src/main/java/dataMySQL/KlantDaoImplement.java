@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import data.ConnectieFactory;
-import data.KlantDao;
+import dataOld.ConnectieFactory;
+import dataOld.KlantDao;
 import domein.Adres;
 import domein.Klant;
 import domein.Adres.AdresType;

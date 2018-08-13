@@ -3,7 +3,7 @@ package dataMongoDB;
 
 import com.mongodb.client.*;
 
-import data.DOM;
+import dataOld.DOM;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

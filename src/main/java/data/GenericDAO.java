@@ -1,4 +1,4 @@
-package genericDAO;
+package data;
 
 import java.util.ArrayList;
 
@@ -9,16 +9,14 @@ import java.util.ArrayList;
  */
 public interface GenericDAO<T> {
 
-    public T findById(Class<T> type, Long id);
+    public T findById(int id);
 
-    public T findByName(Class<T> type, String name);
-    
     public ArrayList<T> findAll();
 
     public T create(T entity);
 
     public void update(T entity);
 
-    public void delete(T entity);
+    public boolean delete(T entity);
 
 }

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 
-import data.BestellingDao;
-import data.ConnectieFactory;
+import dataOld.BestellingDao;
+import dataOld.ConnectieFactory;
 import domein.Bestelling;
 import domein.Klant;
 

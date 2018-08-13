@@ -1,6 +1,6 @@
 package Controllers;
 
-import data.DaoFactory;
+import dataOld.DaoFactory;
 import domein.Account;
 import domein.Account.Rol;
 
@@ -49,10 +49,10 @@ public final class MenuController {
 	
 	public static void setConnectionPool(int connectionPool) {
 		if(connectionPool == 1) {
-			data.ConnectieFactory.setConnectiePool(true);
+			dataOld.ConnectieFactory.setConnectiePool(true);
 		}
 		else {
-			data.ConnectieFactory.setConnectiePool(false);
+			dataOld.ConnectieFactory.setConnectiePool(false);
 		}
 	}
 	

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 
-import data.ArtikelDao;
-import data.ConnectieFactory;
+import dataOld.ArtikelDao;
+import dataOld.ConnectieFactory;
 import domein.Artikel;
 
 public class ArtikelDaoImplement implements ArtikelDao {
