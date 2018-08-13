@@ -3,10 +3,10 @@ package Controllers;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import data.ArtikelDao;
-import data.BestellingDao;
-import data.BestelregelDao;
-import data.DaoFactory;
+import dataOld.ArtikelDao;
+import dataOld.BestellingDao;
+import dataOld.BestelregelDao;
+import dataOld.DaoFactory;
 import domein.Artikel;
 import domein.BestelRegel;
 

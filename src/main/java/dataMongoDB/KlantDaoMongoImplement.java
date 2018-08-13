@@ -13,7 +13,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
-import data.KlantDao;
+import dataOld.KlantDao;
 import domein.Artikel;
 import domein.Klant;
 

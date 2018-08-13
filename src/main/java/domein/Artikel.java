@@ -3,96 +3,107 @@
 // TO DO: exception voor negatieve prijs
 package domein;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import org.hibernate.annotations.ColumnDefault;
 
-public class Artikel {
+/**
+ *
+ * @author FeniksBV
+ */
+@Entity
+public class Artikel implements Serializable {
 
+    //
+    // Een straight-forward POJO
+    //
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(length = 45)
+    @ColumnDefault("null")
     private String naam;
+
+    @ColumnDefault("0")
     private BigDecimal prijs;
+
+    @ColumnDefault("0")
     private int voorraad;
 
-    /**
-     * Creëert een nieuw artikel op basis van opgegeven artikelnaam, het type
-     * van het artikel, de artikelprijs en de voorraad
-     *
-     * @param naam de naam voor het nieuwe artikel
-     * @param type de naam van het type van het artikel
-     * @param prijs de stukprijs van het artikel, die niet negatief mag zijn
-     * @param voorraad de hoeveelheid artikelen die op voorraad zijn, die niet
-     * negatief mag zijn
-     */
-    public Artikel(String naam, BigDecimal prijs, int voorraad) {
-        if (voorraad >= 0) // Hier moet nog aan toegevoegd worden dat prijs ook groter of gelijk aan 0 is
-        {
-            this.naam = naam;
-            this.prijs = prijs;
-            this.voorraad = voorraad;
-        }
+    public Artikel() {
+
     }
 
     public Artikel(int id) {
         this.id = id;
     }
 
-    public void setNaam(String naam) {
+    public Artikel(String naam, BigDecimal prijs, int tvoorraad) {
         this.naam = naam;
+        this.prijs = prijs;
+        this.voorraad = voorraad;
     }
 
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * Wijzigt de prijs naar de gewenste stuksprijs van het artikel
-     *
-     * @param prijs de nieuwe prijs, die minimaal 0 moet zijn
+     * @return the naam
+     */
+    public String getNaam() {
+        return naam;
+    }
+
+    /**
+     * @param naam the naam to set
+     */
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    /**
+     * @return the prijs
+     */
+    public BigDecimal getPrijs() {
+        return prijs;
+    }
+
+    /**
+     * @param prijs the prijs to set
      */
     public void setPrijs(BigDecimal prijs) {
-        // hier moet nog een if formulering komen om af te dwingen dat de prijs minimaal 0 is
         this.prijs = prijs;
     }
 
     /**
-     * Wijzigt de voorraad naar de gewenste hoeveelheid artikelen
-     *
-     * @param voorraad de gewenste nieuwe hoeveelheid, die minimaal 0 moet zijn
+     * @return the voorraad
+     */
+    public int getVoorraad() {
+        return voorraad;
+    }
+
+    /**
+     * @param voorraad the voorraad to set
      */
     public void setVoorraad(int voorraad) {
         this.voorraad = voorraad;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public String getNaam() {
-        return this.naam;
-    }
-
-    public BigDecimal getPrijs() {
-        return this.prijs;
-    }
-
-    public int getVoorraad() {
-        return this.voorraad;
-    }
-
-    public boolean equals(Artikel artikel) {
-        if (this.id != artikel.getId()) {
-            return false;
-        }
-        if (this.voorraad != artikel.getVoorraad()) {
-            return false;
-        }
-        if (!this.naam.equals(artikel.getNaam())) {
-            return false;
-        }
-        if (!this.prijs.equals(artikel.getPrijs())) {
-            return false;
-        }
-        return true;
-
     }
 
 }

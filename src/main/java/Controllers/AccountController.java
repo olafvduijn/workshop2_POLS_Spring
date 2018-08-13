@@ -1,36 +1,38 @@
 package Controllers;
 
+import data.AccountDAOImpl;
 import java.util.ArrayList;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import data.AccountDao;
-import data.DaoFactory;
-import data.KlantDao;
+import dataOld.DaoFactory;
+import dataOld.KlantDao;
 import dataMongoDB.AccountDaoMongoImplement;
 import domein.Account;
 import domein.Klant;
 import domein.Account.Rol;
+import java.util.List;
+import view.Menu;
 
 public class AccountController {
 
-    private AccountDao accountDao;
+    private AccountDAOImpl accountDao;
     private KlantDao klantDao;
     private Account account;
 
     public AccountController() {
-        accountDao = DaoFactory.getAccountDao();
+        accountDao = new AccountDAOImpl(Menu.em, Account.class);
         klantDao = DaoFactory.getKlantDao();
     }
 
     public AccountController(AccountDaoMongoImplement accountDao) {
-        this.accountDao = accountDao;
+        //this.accountDao = accountDao;
     }
 
     public boolean voegAccountToe(String userNaam, String password, Rol rol) {   //https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-1ef4bb9c19b3
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));             // gensalt's log_rounds parameter determines the complexity
-        Integer id = accountDao.createAccount(new Account(userNaam, hashed, rol));
-        return id > 0;
+        Account newAccount = accountDao.create(new Account(userNaam, hashed, rol));
+        return newAccount != null;
     }
 
     public String zoekAccount(Account account) {
@@ -38,7 +40,7 @@ public class AccountController {
     }
 
     public String zoekAccount(int accountId) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         if (account == null) {
             return null;
         } else {
@@ -48,7 +50,7 @@ public class AccountController {
     }
 
     public boolean checkcredentials(String username, String password) {
-        account = accountDao.getAccountLogin(username);
+        account = accountDao.findByName(username);
         if (account == null) {
             return false;
         }
@@ -59,44 +61,48 @@ public class AccountController {
     }
 
     public boolean pasUserNaamAan(int accountId, String userNaam) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         if (account == null) {
             return false;
         }
         account.setUserNaam(userNaam);
-        return accountDao.updateAccount(account);
+        accountDao.update(account);
+        return account.getId() > 0;
     }
 
     public boolean pasUserPasswordAan(int accountId, String password) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         if (account == null) {
             return false;
         }
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
         account.setUserNaam(hashed);
-        return accountDao.updateAccount(account);
+        accountDao.update(account);
+        return account.getId() > 0;
     }
 
     public boolean pasRolAan(int accountId, Rol rol) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         if (account == null) {
             return false;
         }
         account.setRol(rol);
-        return accountDao.updateAccount(account);
+        accountDao.update(account);
+        return account.getId() > 0;
     }
 
     public boolean deleteAccount(int accountId) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         if (account == null) {
             return false;
         }
         account.setId(accountId);
-        return accountDao.deleteAccount(account);
+        accountDao.delete(account);
+        return true;
     }
 
     public String[] getAlleAccounts() {
-        ArrayList<Account> accounts = accountDao.getAlleAccounts();
+        ArrayList<Account> accounts = accountDao.findAll();
         String[] returnArray = new String[accounts.size()];
         for (int i = 0; i < accounts.size(); i++) {
             Account a = accounts.get(i);
@@ -106,7 +112,7 @@ public class AccountController {
     }
 
     public boolean accountIsKlant(int accountId) {
-        account = accountDao.getAccount(accountId);
+        account = accountDao.findById(accountId);
         return (account.getRol() == Account.Rol.klant);
     }
 
@@ -120,7 +126,7 @@ public class AccountController {
     }
 
     public String[] getBeschikbareKlantAccounts() {
-        ArrayList<Account> accounts = accountDao.getKlantAccountsZonderKlant();
+        List<Account> accounts = accountDao.getKlantAccountsZonderKlant();
         String[] returnArray = new String[accounts.size()];
         for (int i = 0; i < accounts.size(); i++) {
             Account a = accounts.get(i);
@@ -130,7 +136,7 @@ public class AccountController {
     }
 
     public boolean isBestaandAccountId(int accountId) {
-        if (accountDao.getAccount(accountId) == null) {
+        if (accountDao.findById(accountId) == null) {
             return false;
         } else {
             return true;

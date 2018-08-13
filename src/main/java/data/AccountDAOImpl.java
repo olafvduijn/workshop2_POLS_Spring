@@ -1,5 +1,6 @@
-package genericDAO;
+package data;
 
+import domein.*;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -19,9 +20,9 @@ public class AccountDAOImpl extends GenericDAOImpl<Account> {
         super(em, entityClass);
     }
 
-    @Override
-    public Account findByName(Class<Account> entityClass, String name) {
+    public Account findByName(String name) {
 
+        // select * from account where name = ?
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Account> query = cb.createQuery(entityClass);
         Root<Account> root = query.from(entityClass);
@@ -58,6 +59,7 @@ public class AccountDAOImpl extends GenericDAOImpl<Account> {
         Root<Account> root = query.from(entityClass);
         query.select(root);
 
+        // Nu samenstellen de subquery: select account_id from klant
         Subquery<Integer> subquery = query.subquery(Integer.class);
         Root<Klant> subRoot = subquery.from(Klant.class);
         subquery.select(subRoot.get("accountId"));

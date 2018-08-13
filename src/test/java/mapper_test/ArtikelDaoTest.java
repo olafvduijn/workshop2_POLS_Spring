@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 import org.junit.*;
 
-import data.ArtikelDao;
-import data.DaoFactory;
+import dataOld.ArtikelDao;
+import dataOld.DaoFactory;
 
 public class ArtikelDaoTest {
 

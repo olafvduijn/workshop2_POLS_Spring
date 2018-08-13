@@ -9,7 +9,7 @@ import static com.mongodb.client.model.Sorts.orderBy;
 import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 
-import data.ArtikelDao;
+import dataOld.ArtikelDao;
 import domein.Artikel;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;

@@ -1,9 +1,9 @@
 package Controllers;
 import java.util.ArrayList;
 
-import data.AdresDao;
-import data.DaoFactory;
-import data.KlantDao;
+import dataOld.AdresDao;
+import dataOld.DaoFactory;
+import dataOld.KlantDao;
 import domein.Account;
 import domein.Adres;
 import domein.Klant;

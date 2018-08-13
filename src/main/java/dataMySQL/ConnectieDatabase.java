@@ -1,8 +1,8 @@
 package dataMySQL;
 import java.sql.*;
 
-import data.Connector;
-import data.DOM;
+import dataOld.Connector;
+import dataOld.DOM;
 
 public  class ConnectieDatabase implements Connector{
 	

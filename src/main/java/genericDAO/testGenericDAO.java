@@ -1,5 +1,9 @@
 package genericDAO;
 
+import data.ArtikelDAOImpl;
+import data.AccountDAOImpl;
+import domein.Account;
+import domein.Artikel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,7 @@ public class testGenericDAO {
         //
         //  Eerst iets met accounts
         //
-        Account acc1 = accountDAO.findByName(Account.class, "steff");
+        Account acc1 = accountDAO.findByName("steff");
         if (acc1 != null) {
             System.out.println("Ja, gevonden, dus nu eerst delete!");
             accountDAO.delete(acc1);
@@ -62,7 +66,7 @@ public class testGenericDAO {
         artikel1.setPrijs(new BigDecimal(123.45));
         artikel1.setVoorraad(120);
         artikel1 = artikelDAO.create(artikel1);
-        Long insertedId = artikel1.getId();
+        int insertedId = artikel1.getId();
 
         // Nog een artikel toevoegen
         Artikel artikel2 = new Artikel();
@@ -73,7 +77,7 @@ public class testGenericDAO {
 
         // Lees het eerst toegevoegde artikel
         em.clear();
-        artikel1 = artikelDAO.findById(Artikel.class, insertedId);
+        artikel1 = artikelDAO.findById(insertedId);
         if (artikel1 != null) {
             System.out.println("Gelezen artikel1 = " + artikel1.getId() + "  " + artikel1.getNaam());
         }
