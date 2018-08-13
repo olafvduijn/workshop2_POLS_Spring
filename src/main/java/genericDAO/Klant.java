@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
@@ -26,31 +28,25 @@ public class Klant {
     @ColumnDefault("null")
     private String achternaam;
     
-    @Column(name = "account_id")
-    private int accountId; // foreign key opgenomen om het leven makkelijk te maken
+    @OneToOne    
+    private Account account;
 
-    public Klant() {
+	public Klant() {
     }
 
-    /**
-     * Creëert een nieuwe klant zonder een nieuw adres
-     *
-     * @param voornaam de voornaam van de nieuwe klant
-     * @param tussenvoegsel
-     * @param achternaam de achternaam van de nieuwe klant
-     */
-    public Klant(String voornaam, String tussenvoegsel, String achternaam, int accountid) {
+
+    public Klant(String voornaam, String tussenvoegsel, String achternaam, Account account) {
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
         this.achternaam = achternaam;
-        this.accountId = accountid;
+        this.account = account;
     }
 
-    public Klant(String voornaam, String achternaam, int accountid) {
+    public Klant(String voornaam, String achternaam, Account accountid) {
         this.voornaam = voornaam;
         this.tussenvoegsel = null;
         this.achternaam = achternaam;
-        this.accountId = accountid;
+        this.account = account;
 
     }
 
@@ -110,18 +106,11 @@ public class Klant {
         this.achternaam = achternaam;
     }
 
-    /**
-     * @return the accountId
-     */
-    public int getAccountId() {
-        return accountId;
-    }
+    public Account getAccount() {
+ 		return account;
+ 	}
 
-    /**
-     * @param accountId the accountId to set
-     */
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
+ 	public void setAccount(Account account) {
+ 		this.account = account;
+ 	}
 }
