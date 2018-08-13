@@ -1,5 +1,22 @@
 package domein;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import domein.*;
+
+@Entity
+@org.hibernate.annotations.DynamicInsert 
+@org.hibernate.annotations.DynamicUpdate
+@Table(name="Adres")
 public class Adres {
 	
 	public enum AdresType {POSTADRES, FACTUURADRES, BEZORGADRES;
@@ -17,35 +34,45 @@ public class Adres {
 		}
 	}
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column (name="Adres_Id")
+	private int id;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 15)
 	private AdresType adresType;
 	private String straatnaam;
 	private int huisnummer;
 	private String toevoeging;
 	private String postcode;
 	private String woonplaats;
-	private int id;
-	private int klantid;
+	@ManyToOne
+	private Klant klant;
 	
 
-	public Adres (AdresType adresType, String straatnaam, int huisnummer, String postcode, String woonplaats, int klantid) {
+	public Adres () {
+		
+	}
+	
+	public Adres (AdresType adresType, String straatnaam, int huisnummer, String postcode, String woonplaats, Klant klant) {
 		this.adresType=adresType;
 		this.straatnaam=straatnaam;
 		this.huisnummer=huisnummer;
 		this.toevoeging="";
 		this.postcode=postcode;
 		this.woonplaats=woonplaats;
-		this.klantid=klantid;
+		this.klant=klant;
 				
 	}
 	
-	public Adres (AdresType adresType, String straatnaam, int huisnummer, String toevoeging, String postcode, String woonplaats, int klantid) {
+	public Adres (AdresType adresType, String straatnaam, int huisnummer, String toevoeging, String postcode, String woonplaats, Klant klant) {
 		this.adresType=adresType;
 		this.straatnaam=straatnaam;
 		this.huisnummer=huisnummer;
 		this.toevoeging=toevoeging;
 		this.postcode=postcode;
 		this.woonplaats=woonplaats;
-		this.klantid=klantid;
+		this.klant=klant;
 		
 	}
 
@@ -69,9 +96,9 @@ public class Adres {
 		this.id=id;
 	}
 	
-	public void setKlantid(int id) {
-		this.klantid=id;
-	}
+	public int getId() {
+		return this.id;
+	}	
 	
 	public String getStraatnaam() {
 		return this.straatnaam;
@@ -93,12 +120,16 @@ public class Adres {
 		return this.adresType;
 	}
 	
-	public int getId() {
-		return this.id;
+	public void setAdresType(AdresType adresType) {
+		this.adresType=adresType;
 	}
 	
-	public int getKlantId() {
-		return this.klantid;
+	public Klant getKlant() {
+		return klant;
+	}
+	
+	public void setKlant(Klant klant) {
+		this.klant=klant;
 	}
 	
 	public boolean equals(Adres adres) {

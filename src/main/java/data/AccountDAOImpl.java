@@ -62,7 +62,7 @@ public class AccountDAOImpl extends GenericDAOImpl<Account> {
         // Nu samenstellen de subquery: select account_id from klant
         Subquery<Integer> subquery = query.subquery(Integer.class);
         Root<Klant> subRoot = subquery.from(Klant.class);
-        subquery.select(subRoot.get("accountId"));
+        subquery.select(subRoot.get("account"));
 
         query.where(cb.equal(root.get("rol"), Account.Rol.klant),
                 cb.not(cb.in(root.get("id")).value(subquery)));

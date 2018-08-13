@@ -1,4 +1,4 @@
-package genericDAO;
+package data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -6,7 +6,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import genericDAO.Adres.AdresType;
+import domein.Adres;
+import domein.Adres.AdresType;
 
 public class AdresDAOImpl extends GenericDAOImpl<Adres> {
 
@@ -14,7 +15,7 @@ public class AdresDAOImpl extends GenericDAOImpl<Adres> {
 		super(em, entityClass);
 	}
 
-	@Override
+	
 	public Adres findByName(Class<Adres> type, String pcode) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Adres> query = cb.createQuery(entityClass);

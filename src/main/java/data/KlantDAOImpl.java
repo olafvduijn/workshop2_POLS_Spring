@@ -1,13 +1,12 @@
-package genericDAO;
+package data;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import genericDAO.Account;
-import genericDAO.GenericDAOImpl;
-import genericDAO.Klant;
+import domein.Klant;
+
 
 public class KlantDAOImpl extends GenericDAOImpl<Klant> {
 
@@ -15,7 +14,7 @@ public class KlantDAOImpl extends GenericDAOImpl<Klant> {
 		super(em, entityClass);
 	}
 
-	@Override
+
 	public Klant findByName(Class<Klant> entityClass, String name) {
 		
 		 CriteriaBuilder cb = em.getCriteriaBuilder();

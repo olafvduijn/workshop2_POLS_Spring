@@ -1,16 +1,21 @@
 package genericDAO;
 
 import data.ArtikelDAOImpl;
+import data.KlantDAOImpl;
 import data.AccountDAOImpl;
+import data.AdresDAOImpl;
 import domein.Account;
+import domein.Adres;
 import domein.Artikel;
+import domein.Klant;
+import domein.Adres.AdresType;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.mindrot.jbcrypt.BCrypt;
 
-import genericDAO.Adres.AdresType;
 import utility.HibernateEntityManagerFactory;
 import utility.Slf4j;
 
