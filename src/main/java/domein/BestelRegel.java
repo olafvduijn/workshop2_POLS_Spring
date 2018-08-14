@@ -1,30 +1,44 @@
-// TO DO: BigDecimal
-
 package domein;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ColumnDefault;
+
+@Entity
+@Table(name="bestelregel")
 public class BestelRegel {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
 	private Artikel artikel;
 	
+	@ColumnDefault("0")
 	private int aantal;
+	
+	@ColumnDefault("0")
 	private BigDecimal prijs;
-//	private Bestelling bestelling;//bestelling updaten als bestelregel aangepast wordt of verwijdert wordt
+	
+	@ColumnDefault("0")
+	@Column (name="Bestelling_idBestelling")
 	private int bestellingId;
-	/**
-	 * Creëert een extra bestelregel voor een bestelling op basis van het gewenste artikel en aantal.
-	 * Berekent tevens de prijs voor deze bestelregel.
-	 * @param artikel het artikel dat besteld moet worden
-	 * @param aantal het aantal stuks van het artikel dat besteld moet worden
-	 */
-/*	public BestelRegel ( Artikel artikel, int aantal) {
-		this.artikel=artikel;
-		this.aantal=aantal;
+	
+	
+	public BestelRegel() {
 		
 	}
-*/	
+	
 	public BestelRegel ( int aantal ,int bestellingId, Artikel artikel ) {
 		this.artikel=artikel;
 		this.setBestellingId(bestellingId);
@@ -46,20 +60,16 @@ public class BestelRegel {
 		this.artikel=artikel;
 	}
 
-	
-	
-	// public void setBestelling(Bestelling bestelling) {
-	// 	this.bestelling= bestelling;
-	// }
-	
 	public void setAantal(int aantal) {
 		this.aantal=aantal;
-		
-		
 	}
 	
 	public void setPrijs(BigDecimal prijs) {
 		this.prijs=prijs;
+	}
+	
+	public void setBestellingId(int bestellingId) {
+		this.bestellingId = bestellingId;
 	}
 	
 	public int getId() {
@@ -70,22 +80,16 @@ public class BestelRegel {
 		return this.artikel;
 	}
 	
-
-/*	 public Bestelling getBestelling() {
-	 	return this.bestelling;
-	 }
-	*/
 	public int getAantal() {
 		return this.aantal;
 	}
 	
-	/**
-	 * Haalt de stukprijs op van het artikel en bepaalt de totaalprijs voor deze bestelregel op basis van het aantal
-	 * @return de vermenigvuldiging van de stukprijs met het aantal bestelde artikelen
-	 */
 	public BigDecimal getPrijs() {
-		
 		return this.prijs;
+	}
+	
+	public int getBestellingId() {
+		return bestellingId;
 	}
 	
 	public boolean equals (BestelRegel bestelregel) {
@@ -104,12 +108,8 @@ public class BestelRegel {
 		return true;
 	}
 
-	public int getBestellingId() {
-		return bestellingId;
-	}
 
-	public void setBestellingId(int bestellingId) {
-		this.bestellingId = bestellingId;
-	}
+
+
 	
 }

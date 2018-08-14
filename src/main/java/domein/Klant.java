@@ -42,7 +42,7 @@ public class Klant {
         this.account = account;
     }
 
-    public Klant(String voornaam, String achternaam, Account accountid) {
+    public Klant(String voornaam, String achternaam, Account account) {
         this.voornaam = voornaam;
         this.tussenvoegsel = null;
         this.achternaam = achternaam;
