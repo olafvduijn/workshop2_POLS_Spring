@@ -1,12 +1,9 @@
 package Controllers;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import data.BestellingDAOImpl;
 import data.KlantDAOImpl;
-import domein.Adres;
-import domein.BestelRegel;
 import domein.Bestelling;
 import domein.Klant;
 import view.Menu;

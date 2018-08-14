@@ -78,12 +78,11 @@ public class BestelregelController {
 	public boolean bestellingTotaalPrijsUpdate(int bestellingId) {
 		BigDecimal totaalPrijs = bepaalBestelregelsTotaalprijs(bestellingId);
 		try {
-			Bestelling bestelling=bestellingdao.findById(bestellingId);
+			Bestelling bestelling = bestellingdao.findById(bestellingId);
 			bestelling.settotaalprijs(totaalPrijs);
 			bestellingdao.update(bestelling);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
 	}
