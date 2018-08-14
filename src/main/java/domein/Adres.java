@@ -14,8 +14,6 @@ import javax.persistence.Table;
 import domein.*;
 
 @Entity
-@org.hibernate.annotations.DynamicInsert 
-@org.hibernate.annotations.DynamicUpdate
 @Table(name="Adres")
 public class Adres {
 	
@@ -35,7 +33,7 @@ public class Adres {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name="Adres_Id")
 	private int id;
     @Enumerated(EnumType.STRING)
