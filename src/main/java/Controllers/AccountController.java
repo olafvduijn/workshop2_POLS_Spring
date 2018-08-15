@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import dataOld.DaoFactory;
-import dataOld.KlantDao;
-import dataMongoDB.AccountDaoMongoImplement;
 import domein.Account;
 import domein.Klant;
 import domein.Account.Rol;
@@ -27,14 +24,16 @@ public class AccountController {
         klantDao = new KlantDAOImpl(Menu.em, Klant.class);
     }
 
-    public AccountController(AccountDaoMongoImplement accountDao) {
-        //this.accountDao = accountDao;
-    }
-
     public boolean voegAccountToe(String userNaam, String password, Rol rol) {   //https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-1ef4bb9c19b3
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));             // gensalt's log_rounds parameter determines the complexity
-        Account newAccount = accountDao.create(new Account(userNaam, hashed, rol));
-        return newAccount != null;
+        Account newAccount = accountDao.findByName(userNaam);
+        if (newAccount == null) {
+            String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));             // gensalt's log_rounds parameter determines the complexity
+            newAccount = accountDao.create(new Account(userNaam, hashed, rol));
+            return newAccount != null;
+        } 
+        else {
+            return false;
+        }
     }
 
     public String zoekAccount(Account account) {

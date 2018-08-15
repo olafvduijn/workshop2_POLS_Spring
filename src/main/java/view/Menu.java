@@ -27,37 +27,43 @@ public class Menu {
 
     }
 
+    protected int inlogKeuze() {
+        while (true) {
+            System.out.println("Hallo!  dit is Boer Piet kaas winkel");
+            System.out.println("Wilt u 1: inloggen of 2: afsluiten");
+            String userChoice = input.nextLine();
+            if (userChoice.length() == 1) {
+                switch (userChoice) {
+                    case "1":
+                        return 1;
+                    case "2":
+                        return 2;
+                }
+            }
+            System.out.println("Incorrecte keuze. Probeer opnieuw.");
+        }
+
+    }
+
     public void inloggen() {
         while (true) {
 
-            System.out.println("Hallo!  dit is Boer Piet kaas winkel");
-            System.out.println("Wilt u 1: inloggen of 2: afsluiten");
-            int keus = input.nextInt();
-            input.nextLine();
+//            System.out.println("Hallo!  dit is Boer Piet kaas winkel");
+//            System.out.println("Wilt u 1: inloggen of 2: afsluiten");
+//            int keus = input.nextInt();
+//            input.nextLine();
+            int keus = inlogKeuze();
             if (keus == 2) {
                 Slf4j.getLogger().info("Workshop2 (POLS) ended");
-                
+
                 // Close entityManager
                 HibernateEntityManagerFactory.closeEntityManagerFactory();
-                
+
                 System.out.println("Bedankt tot ziens");
                 System.exit(0);
 
             } else {
-                System.out.println("Kies database.");
-                System.out.println("Kies en type in wat u wilt doen:  1 :MySQL Database");
-                System.out.println("Kies en type in wat u wilt doen:  2 :Mongo Database");
-                int database = 1; //input.nextInt();
-                MenuController.setDatabase(database);
-//                input.nextLine();
-                if (database == 1) {
-                    System.out.println("Kies en type in wat u wilt doen:  1 :Wel een connectiepool gebruiken ");
-                    System.out.println("Kies en type in wat u wilt doen:  2 :Niet een connectiepool gebruiken ");
 
-                    int pool = 1; // input.nextInt();
-                    MenuController.setConnectionPool(pool);
-//                    input.nextLine();
-                }
                 System.out.println("Log in om verder te gaan");
                 System.out.println("Usernaam?");
                 String user = input.nextLine();

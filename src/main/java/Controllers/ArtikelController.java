@@ -1,7 +1,6 @@
 package Controllers;
 
 import data.ArtikelDAOImpl;
-import dataMySQL.ArtikelDaoImplement;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import domein.Artikel;
@@ -16,14 +15,6 @@ public class ArtikelController {
         artikelDao = new ArtikelDAOImpl(Menu.em, Artikel.class);
         artikelen = artikelDao.findAll();
     }
-
-    public ArtikelController(ArtikelDaoImplement artikelDaoImplement) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-//    public ArtikelController(ArtikelDao artikelDao) {
-//        this.artikelDao = artikelDao;
-//    }
 
     public String[] getAlleArtikelen() {
         ArrayList<Artikel> artikelen = artikelDao.findAll();

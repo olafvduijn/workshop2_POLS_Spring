@@ -2,9 +2,6 @@ package Controllers;
 
 import data.AdresDAOImpl;
 import data.KlantDAOImpl;
-import dataOld.AdresDao;
-import dataOld.DaoFactory;
-import dataOld.KlantDao;
 import domein.Adres;
 import domein.Adres.AdresType;
 import view.Menu;
@@ -17,6 +14,7 @@ public class AdresController {
 	Klant klant;
 	Adres adres;
 	
+        
 	public AdresController() {
 		adresDao = new AdresDAOImpl(Menu.em, Adres.class);
 		klantDao = new KlantDAOImpl(Menu.em, Klant.class);
