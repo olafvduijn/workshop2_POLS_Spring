@@ -37,7 +37,7 @@ public class testGenericDAO {
 		EntityManager em = HibernateEntityManagerFactory.getEntityManager();
 		// Verkrijg de DAO
 		ArtikelDAOImpl artikelDAO = new ArtikelDAOImpl(em, Artikel.class);
-		AccountDAOImpl accountDAO = new AccountDAOImpl(em, Account.class);
+		AccountDAOImpl accountDAO = new AccountDAOImpl();
 		KlantDAOImpl klantDAO = new KlantDAOImpl(em, Klant.class);
 		AdresDAOImpl adresDAO = new AdresDAOImpl(em, Adres.class);
 		BestellingDAOImpl bestellingDAO = new BestellingDAOImpl(em, Bestelling.class);

@@ -9,12 +9,19 @@ import javax.persistence.criteria.CriteriaQuery;
  * @author FeniksBV
  * @param <T>
  */
+
 public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
-    protected EntityManager em;
-    protected final Class<T> entityClass;
+	protected EntityManager em ;
+	
+    protected  Class<T> entityClass;
 
-    protected GenericDAOImpl(EntityManager em, Class<T> entityClass) {
+	
+
+
+
+	protected GenericDAOImpl(EntityManager em, Class<T> entityClass) {
+		
         this.em = em;
         this.entityClass = entityClass;
     }
@@ -28,6 +35,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
     @Override
     public ArrayList<T> findAll() {
         CriteriaQuery<T> criteriaQuery = em.getCriteriaBuilder().createQuery(entityClass);
+        System.out.println("***** " + entityClass);
         criteriaQuery.select(criteriaQuery.from(entityClass));
         return (ArrayList<T>) em.createQuery(criteriaQuery).getResultList();
     }

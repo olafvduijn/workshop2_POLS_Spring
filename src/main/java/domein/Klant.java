@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.ColumnDefault;
 
+
+
 @Entity
 public class Klant {
 

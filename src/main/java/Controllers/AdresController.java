@@ -4,8 +4,9 @@ import data.AdresDAOImpl;
 import data.KlantDAOImpl;
 import domein.Adres;
 import domein.Adres.AdresType;
-import view.Menu;
+import utility.EntityManagerPols;
 import domein.Klant;
+
 
 public class AdresController {
 	
@@ -16,8 +17,8 @@ public class AdresController {
 	
         
 	public AdresController() {
-		adresDao = new AdresDAOImpl(Menu.em, Adres.class);
-		klantDao = new KlantDAOImpl(Menu.em, Klant.class);
+		adresDao = new AdresDAOImpl(EntityManagerPols.em, Adres.class);
+		klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
 	}
 	
 	public void setKlant(int klantId) {

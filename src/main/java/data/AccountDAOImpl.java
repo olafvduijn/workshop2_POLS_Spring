@@ -1,8 +1,9 @@
 package data;
 
 import domein.*;
+import utility.EntityManagerPols;
+
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,10 +15,13 @@ import javax.persistence.criteria.Subquery;
  *
  * @author FeniksBV
  */
+
 public class AccountDAOImpl extends GenericDAOImpl<Account> {
 
-    public AccountDAOImpl(EntityManager em, Class<Account> entityClass) {
-        super(em, entityClass);
+	
+
+    public AccountDAOImpl() {
+        super(EntityManagerPols.em, Account.class);
     }
 
     public Account findByName(String name) {

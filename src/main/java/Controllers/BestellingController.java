@@ -6,7 +6,7 @@ import data.BestellingDAOImpl;
 import data.KlantDAOImpl;
 import domein.Bestelling;
 import domein.Klant;
-import view.Menu;
+import utility.EntityManagerPols;
 
 public class BestellingController {
 
@@ -14,8 +14,8 @@ public class BestellingController {
     private KlantDAOImpl klantDao;
 
     public BestellingController() {
-        bestellingDao = new BestellingDAOImpl(Menu.em, Bestelling.class);
-        klantDao = new KlantDAOImpl(Menu.em, Klant.class);
+        bestellingDao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
+        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
 
     }
 

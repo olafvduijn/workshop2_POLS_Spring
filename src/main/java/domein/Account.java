@@ -1,6 +1,5 @@
 package domein;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +10,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-public class Account implements Serializable {
+public class Account  {
 
     public enum Rol {
         klant, medewerker, beheerder;

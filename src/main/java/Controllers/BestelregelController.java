@@ -9,7 +9,7 @@ import data.BestelregelDAOImpl;
 import domein.Artikel;
 import domein.BestelRegel;
 import domein.Bestelling;
-import view.Menu;
+import utility.EntityManagerPols;
 
 public class BestelregelController {
 
@@ -19,10 +19,10 @@ public class BestelregelController {
     private ArrayList<Artikel> artikelen;
 
     public BestelregelController() {
-        bestelregelDao = new BestelregelDAOImpl(Menu.em, BestelRegel.class);
-        artikelDao = new ArtikelDAOImpl(Menu.em, Artikel.class);
+        bestelregelDao = new BestelregelDAOImpl(EntityManagerPols.em, BestelRegel.class);
+        artikelDao = new ArtikelDAOImpl(EntityManagerPols.em, Artikel.class);
         artikelen = artikelDao.findAll();
-        bestellingdao = new BestellingDAOImpl(Menu.em, Bestelling.class);
+        bestellingdao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
     }
 
     public String voegBestelregelToe(int bestellingId, int artikelIndex, int aantal) {

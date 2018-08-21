@@ -1,20 +1,24 @@
 package view;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import Controllers.AccountController;
 import domein.Account;
 import domein.Account.Rol;
 import validator.Validator;
 
-
+@Component
 public class AccountsMenu {
 	private  Scanner input = new Scanner(System.in);
+	@Autowired
 	private AccountController accountController;
-	private KlantgegevensMenu klantgegevensMenu= new KlantgegevensMenu();
+//	private KlantgegevensMenu klantgegevensMenu= new KlantgegevensMenu();
 	
 	
 	public AccountsMenu(){
-		accountController = new AccountController();
+		
 	}
 	
 	public void accountsMenu() {
@@ -54,7 +58,7 @@ public class AccountsMenu {
 			deleteAcount(input.nextInt());
 				break;
 	    case 5:
-	    	klantgegevensMenu.klantgegevensMenu();
+//	    	klantgegevensMenu.klantgegevensMenu();
 	    	break;
 		case 0:
 			logout=true;
@@ -65,8 +69,9 @@ public class AccountsMenu {
 	}  	
 	}
 	public void toonAccounts() {
-		System.out.println("Alle accountinformatie: ");		
-			for(String s : accountController.getAlleAccounts()){
+		System.out.println("Alle accountinformatie: ");
+		
+		for(String s : accountController.getAlleAccounts()){
 				System.out.println(s);
 			}
 		}

@@ -1,16 +1,13 @@
 package view;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 import Controllers.AdresController;
-import Controllers.KlantController;
-import domein.Adres;
 import validator.Validator;
 
 public class AdresMenu {
 	private  Scanner input = new Scanner(System.in);
 	private AdresController adresController;
-	private KlantController klantController;
+//	private KlantController klantController;
 	int klantId;
 
 	

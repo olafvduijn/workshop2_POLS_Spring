@@ -1,6 +1,8 @@
 package view;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import Controllers.AccountController;
 import Controllers.KlantController;
 import validator.Validator;
@@ -9,14 +11,15 @@ import validator.Validator;
 
 public class KlantgegevensMenu {
 	private  Scanner input = new Scanner(System.in);
+//	@Autowired
 	private KlantController klantController;
+	@Autowired
 	private AccountController accountController;
 	private BestellingenMenu bestellingenMenu= new BestellingenMenu();
 	
 	
 	public KlantgegevensMenu(){
-		klantController = new KlantController();
-		accountController = new AccountController();
+		klantController = new KlantController();	
 	}	
 	
 	public void klantgegevensMenu() {   
@@ -279,6 +282,7 @@ public class KlantgegevensMenu {
 	}
 	
 	public void printAlleKlanten(){
+		
 		for(String s : klantController.getAlleKlanten()){
 			System.out.println(s);
 		}
