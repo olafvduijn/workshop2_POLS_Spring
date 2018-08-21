@@ -10,8 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import Controllers.MenuController;
-
-
+import domein.Account.Rol;
 import utility.EntityManagerPols;
 import utility.HibernateEntityManagerFactory;
 import utility.Slf4j;
@@ -35,6 +34,8 @@ public class MainMenu {
 	private AccountsMenu accountMenu;
 	@Autowired
 	private ArtikelMenu artikelmenu;
+	@Autowired
+	private KlantgegevensMenu klantgegevensMenu;
 	
 	
 	public static void main(String[] args) {
@@ -98,12 +99,12 @@ public class MainMenu {
 				// String dbUser = "User";
 				// String dbPassword = "Password"; // credentials from the data source
 				// if (dbUser.equals(user) && dbPassword.equals(password)) {
-
+					 //MenuController.setRol(Rol.beheerder);
 				// AccountController accountController = new AccountController();
 				if (accountController.checkcredentials(user, password)) {
 
 					System.out.println("U bent succesvol ingelogd ");
-
+				
 					actie();
 
 				} else {
@@ -113,7 +114,10 @@ public class MainMenu {
 				}
 
 				// }
+				 
+				 
 			}
+//			actie();
 		}
 	}
 
@@ -130,7 +134,6 @@ public class MainMenu {
 			int actie = input.nextInt();
 			switch (actie) {
 			case 1:
-				KlantgegevensMenu klantgegevensMenu = new KlantgegevensMenu();
 				klantgegevensMenu.klantgegevensMenu();
 				break;
 			case 2:

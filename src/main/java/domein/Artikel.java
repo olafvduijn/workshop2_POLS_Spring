@@ -44,7 +44,7 @@ public class Artikel implements Serializable {
         this.id = id;
     }
 
-    public Artikel(String naam, BigDecimal prijs, int tvoorraad) {
+    public Artikel(String naam, BigDecimal prijs, int voorraad) {
         this.naam = naam;
         this.prijs = prijs;
         this.voorraad = voorraad;

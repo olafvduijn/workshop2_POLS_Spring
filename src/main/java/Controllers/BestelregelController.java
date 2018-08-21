@@ -3,6 +3,8 @@ package Controllers;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 import data.ArtikelDAOImpl;
 import data.BestellingDAOImpl;
 import data.BestelregelDAOImpl;
@@ -11,6 +13,7 @@ import domein.BestelRegel;
 import domein.Bestelling;
 import utility.EntityManagerPols;
 
+@Component
 public class BestelregelController {
 
     private BestelregelDAOImpl bestelregelDao;
@@ -185,7 +188,6 @@ public class BestelregelController {
     }
 
     public boolean voorraadVerlagen(Artikel artikel, int aantal) {
-        verlaagVoorraad(artikel, aantal);
         try {
             artikelDao.update(artikel);
             return true;

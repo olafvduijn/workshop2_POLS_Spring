@@ -2,12 +2,15 @@ package Controllers;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 import data.BestellingDAOImpl;
 import data.KlantDAOImpl;
 import domein.Bestelling;
 import domein.Klant;
 import utility.EntityManagerPols;
 
+@Component
 public class BestellingController {
 
     private BestellingDAOImpl bestellingDao;
