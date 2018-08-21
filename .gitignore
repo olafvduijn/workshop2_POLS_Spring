@@ -1,5 +1,6 @@
 /resources/connectie.xml
 /target/
+/lib/
 /Applikaasie_LOP_testdata.sql
 /workshop2_slf4j.log
 /Overzicht_sql.txt
@@ -7,7 +8,7 @@
 /.metadata
 /src/databaseconnection
 /src/pojo
-/src/test/resources/META-INF
+/src/main/resources/META-INF
 /src/structuur
 /properties
 /*.jar

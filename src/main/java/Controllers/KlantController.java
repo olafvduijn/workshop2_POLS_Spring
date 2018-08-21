@@ -15,15 +15,15 @@ import utility.EntityManagerPols;
 
 @Component
 public class KlantController {
-	
+
     private AccountDAOImpl accountDao;
-	
+
     private KlantDAOImpl klantDao;
-	
+
     private AdresDAOImpl adresDao;
 
     public KlantController() {
-    	accountDao = new AccountDAOImpl();
+        accountDao = new AccountDAOImpl();
         klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
         adresDao = new AdresDAOImpl(EntityManagerPols.em, Adres.class);
     }

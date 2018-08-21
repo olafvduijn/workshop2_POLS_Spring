@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>WS_1</groupId>
-    <artifactId>workshop2_POLS</artifactId>
+    <artifactId>workshop2_POLS_Spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>workshop2_POLS</name>
+    <name>workshop2_POLS_Spring</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -15,34 +15,6 @@
     </properties>
 
     <build>
-        <resources>
-            <resource>
-                <directory>resources</directory>
-                <includes>
-                    <include>connectie.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/test/resources</directory>
-                <includes>
-                    <include>log4j.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/test/resources/META-INF</directory>
-                <includes>
-                    <include>persistence.xml</include>
-                </includes>
-            </resource>
-            <!-- Brutal force to fix -->
-        <resource>
-            <directory>src/test/resources/META-INF</directory>
-            <targetPath>META-INF</targetPath>
-            <includes>
-                <include>persistence.xml</include>
-            </includes>
-        </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -59,7 +31,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>MainMenu</mainClass>
+                            <mainClass>view/MainMenu</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -74,13 +46,7 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
+    
     <dependencies>
         
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
@@ -92,7 +58,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.2.10.Final</version>
+            <version>4.3.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -100,11 +66,11 @@
             <version>5.2.6.Final</version>
             <scope>provided</scope>
         </dependency>
-            <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-context</artifactId>
-    <version>4.3.7.RELEASE</version>
-</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
@@ -174,7 +140,6 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-        
         
     </dependencies>
   
