@@ -135,7 +135,7 @@ public class ArtikelMenu {
         String naam = "";
         while (true) {
             System.out.println("Vul nieuwe naam in");
-            naam = input.next();
+            naam = input.nextLine();
             if ((Validator.isNaamValid(naam))) {
                 break;
             }
