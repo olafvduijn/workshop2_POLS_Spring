@@ -10,21 +10,22 @@ import org.springframework.stereotype.Component;
 
 import domein.Account;
 import domein.Klant;
-import utility.EntityManagerPols;
 import domein.Account.Rol;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class AccountController {
 
+    @Autowired
     private KlantDAOImpl klantDao;
     private Account account;
-
+    @Autowired
     private AccountDAOImpl accountDao;
 
     public AccountController() {
-        accountDao = new AccountDAOImpl();
-        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
+//        accountDao = new AccountDAOImpl();
+//        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
     }
 
     public boolean voegAccountToe(String userNaam, String password, Rol rol) { // https://medium.com/@mpreziuso/password-hashing-pbkdf2-scrypt-bcrypt-1ef4bb9c19b3

@@ -108,6 +108,7 @@ public class ArtikelMenu {
             System.out.println("3: voorraad aanpassen");
             System.out.println("4: Annuleer");
             int keuze = input.nextInt();
+            input.nextLine();
             switch (keuze) {
                 case 1:
                     pasNaamAan(artikelId);

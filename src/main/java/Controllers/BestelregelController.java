@@ -11,25 +11,26 @@ import data.BestelregelDAOImpl;
 import domein.Artikel;
 import domein.BestelRegel;
 import domein.Bestelling;
-import utility.EntityManagerPols;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class BestelregelController {
 
+    @Autowired
     private BestelregelDAOImpl bestelregelDao;
+    @Autowired
     private ArtikelDAOImpl artikelDao;
+    @Autowired
     private BestellingDAOImpl bestellingdao;
-    private ArrayList<Artikel> artikelen;
 
     public BestelregelController() {
-        bestelregelDao = new BestelregelDAOImpl(EntityManagerPols.em, BestelRegel.class);
-        artikelDao = new ArtikelDAOImpl(EntityManagerPols.em, Artikel.class);
-        artikelen = artikelDao.findAll();
-        bestellingdao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
+//        bestelregelDao = new BestelregelDAOImpl(EntityManagerPols.em, BestelRegel.class);
+//        artikelDao = new ArtikelDAOImpl(EntityManagerPols.em, Artikel.class);
+//        bestellingdao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
     }
 
     public String voegBestelregelToe(int bestellingId, int artikelIndex, int aantal) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(artikelIndex);
         BestelRegel bestelregel = new BestelRegel(aantal, bestellingId, artikel);
         bestelregel.setPrijs(artikel.getPrijs().multiply(new BigDecimal(aantal)));
@@ -91,7 +92,7 @@ public class BestelregelController {
     }
 
     public String pasBestelregelAan(int bestelregelId, int aantal, int artikelIndex) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         BestelRegel bestelregel = bestelregelDao.findById(bestelregelId);
         if (bestelregel == null) {
             return "bestelregel niet gevonden";

@@ -8,17 +8,19 @@ import data.BestellingDAOImpl;
 import data.KlantDAOImpl;
 import domein.Bestelling;
 import domein.Klant;
-import utility.EntityManagerPols;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class BestellingController {
 
+    @Autowired
     private BestellingDAOImpl bestellingDao;
+    @Autowired
     private KlantDAOImpl klantDao;
 
     public BestellingController() {
-        bestellingDao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
-        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
+//        bestellingDao = new BestellingDAOImpl(EntityManagerPols.em, Bestelling.class);
+//        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
 
     }
 

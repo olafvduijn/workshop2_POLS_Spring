@@ -23,7 +23,7 @@ public class AccountsMenu {
 
     }
 
-    public void accountsMenu() {
+    public void initAccountMenu() {
         boolean logout = false;
 
         // this menu is meant for only the administrator 

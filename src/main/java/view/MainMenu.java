@@ -16,7 +16,7 @@ import utility.HibernateEntityManagerFactory;
 import utility.Slf4j;
 
 @Configuration
-@ComponentScan(basePackages = {"Controllers", "view"})
+@ComponentScan(basePackages = {"Controllers","view","data"})
 public class MainMenu {
 
     // Verkrijg een entityManager
@@ -28,7 +28,7 @@ public class MainMenu {
     @Autowired
     private AccountController accountController;
     @Autowired
-    private AccountsMenu accountMenu;
+    private AccountsMenu accountsMenu;
     @Autowired
     private ArtikelMenu artikelmenu;
     @Autowired
@@ -135,7 +135,7 @@ public class MainMenu {
                     break;
                 case 3:
                     if (MenuController.isBeheerder()) {
-                        accountMenu.accountsMenu();
+                        accountsMenu.initAccountMenu();
                     }
                     break;
                 case 0: {

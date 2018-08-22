@@ -20,7 +20,7 @@ public class KlantgegevensMenu {
     @Autowired
     private BestellingenMenu bestellingenMenu;
     @Autowired
-    AdresMenu adresmenu;
+    private AdresMenu adresmenu;
 
     public KlantgegevensMenu() {
     }
@@ -241,7 +241,7 @@ public class KlantgegevensMenu {
         while (true) {
             System.out.println("Vul nieuwe achternaam  in");
             achternaam = input.nextLine();
-            if ((Validator.postcodeIsValid(achternaam))) {
+            if ((Validator.isNaamValid(achternaam))) {
                 break;
             }
         }

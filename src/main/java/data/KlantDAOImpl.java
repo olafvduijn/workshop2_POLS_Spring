@@ -1,18 +1,22 @@
 package data;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import domein.Klant;
+import org.springframework.stereotype.Component;
+import utility.EntityManagerPols;
 
-
+@Component
 public class KlantDAOImpl extends GenericDAOImpl<Klant> {
 
-	public KlantDAOImpl(EntityManager em, Class<Klant> entityClass) {
-		super(em, entityClass);
-	}
+    public KlantDAOImpl() {
+        super(EntityManagerPols.em, Klant.class);
+    }
+//	public KlantDAOImpl(EntityManager em, Class<Klant> entityClass) {
+//		super(em, entityClass);
+//	}
 
 
 	public Klant findByName(Class<Klant> entityClass, String name) {

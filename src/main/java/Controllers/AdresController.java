@@ -4,21 +4,22 @@ import data.AdresDAOImpl;
 import data.KlantDAOImpl;
 import domein.Adres;
 import domein.Adres.AdresType;
-import utility.EntityManagerPols;
 import domein.Klant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AdresController {
 
-    AdresDAOImpl adresDao;
+    @Autowired
+    private AdresDAOImpl adresDao;
+    @Autowired
     private KlantDAOImpl klantDao;
     Klant klant;
     Adres adres;
 
     public AdresController() {
-        adresDao = new AdresDAOImpl(EntityManagerPols.em, Adres.class);
-        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
+//        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
     }
 
     public void setKlant(int klantId) {

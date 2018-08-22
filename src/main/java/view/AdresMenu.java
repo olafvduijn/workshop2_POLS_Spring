@@ -14,7 +14,7 @@ public class AdresMenu {
     private AdresController adresController;
     int klantId;
     @Autowired
-    AdresMenu nieuwAdresMenu;
+    private AdresMenu nieuwAdresMenu;
 
     public AdresMenu() {
 

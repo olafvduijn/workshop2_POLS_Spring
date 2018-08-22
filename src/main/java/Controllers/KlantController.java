@@ -11,21 +11,22 @@ import domein.Account;
 import domein.Adres;
 import domein.Klant;
 import domein.Adres.AdresType;
-import utility.EntityManagerPols;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class KlantController {
 
+    @Autowired
     private AccountDAOImpl accountDao;
-
+    @Autowired
     private KlantDAOImpl klantDao;
-
+    @Autowired
     private AdresDAOImpl adresDao;
 
     public KlantController() {
-        accountDao = new AccountDAOImpl();
-        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
-        adresDao = new AdresDAOImpl(EntityManagerPols.em, Adres.class);
+//        accountDao = new AccountDAOImpl();
+//        klantDao = new KlantDAOImpl(EntityManagerPols.em, Klant.class);
+//        adresDao = new AdresDAOImpl(EntityManagerPols.em, Adres.class);
     }
 
     public Klant getKlant(int klantId) {

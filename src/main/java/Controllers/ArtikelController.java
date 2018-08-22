@@ -7,17 +7,18 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import domein.Artikel;
-import utility.EntityManagerPols;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class ArtikelController {
 
+    @Autowired
     private ArtikelDAOImpl artikelDao;
-    private ArrayList<Artikel> artikelen;
+//    private ArrayList<Artikel> artikelen;
 
     public ArtikelController() {
-        artikelDao = new ArtikelDAOImpl(EntityManagerPols.em, Artikel.class);
-        artikelen = artikelDao.findAll();
+//        artikelDao = new ArtikelDAOImpl(EntityManagerPols.em, Artikel.class);
+//        artikelen = artikelDao.findAll();
     }
 
     public String[] getAlleArtikelen() {
@@ -39,12 +40,12 @@ public class ArtikelController {
 
     public boolean voegArtikelToe(String naam, BigDecimal prijs, int voorraad) {
         Artikel newArtikel = artikelDao.create(new Artikel(naam, prijs, voorraad));
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         return newArtikel != null;
     }
 
     public boolean pasNaamAan(int index, String naam) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(index);
         artikel = artikelDao.findById(artikel.getId());
         if (artikel == null) {
@@ -56,7 +57,7 @@ public class ArtikelController {
     }
 
     public boolean pasPrijsAan(int index, BigDecimal prijs) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(index);
         artikel = artikelDao.findById(artikel.getId());
         if (artikel == null) {
@@ -68,7 +69,7 @@ public class ArtikelController {
     }
 
     public boolean pasVoorraadAan(int index, int aantal) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(index);
         artikel = artikelDao.findById(artikel.getId());
         if (artikel == null) {
@@ -80,7 +81,7 @@ public class ArtikelController {
     }
 
     public String zoekArtikel(int index) {
-        artikelen = artikelDao.findAll();
+         ArrayList<Artikel>artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(index);
         artikel = artikelDao.findById(artikel.getId());
         if (artikel == null) {
@@ -93,7 +94,7 @@ public class ArtikelController {
     }
 
     public boolean deleteArtikel(int index) {
-        artikelen = artikelDao.findAll();
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         Artikel artikel = artikelen.get(index);
         artikel = artikelDao.findById(artikel.getId());
         if (artikel == null) {
@@ -107,6 +108,7 @@ public class ArtikelController {
     }
 
     public boolean isBestaandArtikelnr(int artikelIndex) {
+        ArrayList<Artikel> artikelen = artikelDao.findAll();
         if (artikelIndex < artikelen.size()) {
             return true;
         } else {
