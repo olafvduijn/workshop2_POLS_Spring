@@ -1,23 +1,15 @@
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+/resources/connectie.xml
+/target/
+/lib/
+/Applikaasie_LOP_testdata.sql
+/workshop2_slf4j.log
+/Overzicht_sql.txt
+/.classpath
+/.metadata
+/src/databaseconnection
+/src/pojo
+/src/main/resources/META-INF
+/src/structuur
+/properties
+/*.jar
+/.settings
